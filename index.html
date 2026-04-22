@@ -3,114 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation | MOONLIGHT</title>
+    <title>MOONLIGHT | Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
+            background-color: #f9f7f2;
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: 'Times New Roman', serif;
-            /* ფონზე დავაყენოთ ლამაზი საქორწილო სურათი */
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
         }
 
-        .glass-container {
-            background: rgba(255, 255, 255, 0.1); /* შუშის ეფექტი */
-            backdrop-filter: blur(15px); /* დაბურვა */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 50px 30px;
+        .invitation-card {
+            background: white;
             width: 90%;
-            max-width: 450px;
+            max-width: 500px;
+            padding: 60px 40px;
             text-align: center;
-            color: white;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            border: 1px solid #e0d5c1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        /* ოქროსფერი ჩარჩო */
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px solid #d4af37;
+            pointer-events: none;
+        }
+
+        .logo-text {
+            font-size: 0.8em;
+            letter-spacing: 4px;
+            color: #bc9311;
+            margin-bottom: 30px;
+            text-transform: uppercase;
         }
 
         h1 {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            color: #222;
+            margin: 20px 0;
+            font-weight: 400;
         }
 
-        .divider {
-            width: 50px;
-            height: 2px;
-            background: #d4af37;
-            margin: 20px auto;
-        }
-
-        p {
-            font-size: 1.2em;
-            margin: 15px 0;
-            letter-spacing: 1px;
-        }
-
-        .date-box {
+        .and {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
             font-size: 1.5em;
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 15px 0;
-            margin: 25px 0;
-            font-weight: bold;
+            color: #d4af37;
+            margin: 10px 0;
+        }
+
+        .details {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        .date {
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            color: #444;
+            text-transform: uppercase;
         }
 
         .location {
-            color: #d4af37;
+            font-family: 'Playfair Display', serif;
             font-style: italic;
-            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #777;
+            margin: 15px 0 40px 0;
         }
 
-        .rsvp-btn {
-            background: transparent;
-            border: 1px solid white;
-            color: white;
-            padding: 12px 40px;
-            text-decoration: none;
-            font-size: 1em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.4s;
+        .rsvp-button {
             display: inline-block;
+            padding: 15px 40px;
+            background-color: #222;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 0.9em;
+            transition: 0.3s;
+            text-transform: uppercase;
         }
 
-        .rsvp-btn:hover {
-            background: white;
-            color: black;
+        .rsvp-button:hover {
+            background-color: #d4af37;
         }
 
         footer {
-            margin-top: 30px;
+            margin-top: 40px;
             font-size: 0.7em;
-            opacity: 0.6;
+            color: #bbb;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <div class="glass-container">
-        <p>MOONLIGHT EVENTS PRESENTS</p>
-        <h1>SAVE THE DATE</h1>
-        <div class="divider"></div>
+    <div class="invitation-card">
+        <div class="logo-text">Moonlight Events</div>
         
-        <p>JOIN US TO CELEBRATE THE WEDDING OF</p>
-        <h2 style="font-size: 2.2em; margin: 10px 0;">David & Nia</h2>
+        <p style="letter-spacing: 2px; color: #888;">TOGETHER WITH THEIR FAMILIES</p>
         
-        <div class="date-box">
-            AUGUST | 22 | 2026
+        <h1>David</h1>
+        <div class="and">&</div>
+        <h1>Nia</h1>
+        
+        <div class="details">
+            <p style="margin-bottom: 5px; color: #888;">ARE GETTING MARRIED</p>
+            <div class="date">Saturday, 22 August 2026</div>
+            <div class="location">Mtatsminda Panorama, Tbilisi</div>
         </div>
-        
-        <p class="location">Mtatsminda Panorama, Tbilisi</p>
-        
-        <a href="#" class="rsvp-btn">Confirm Attendance</a>
+
+        <a href="#" class="rsvp-button">Confirm Attendance</a>
         
         <footer>
             DESIGNED BY MOONLIGHT MANAGEMENT

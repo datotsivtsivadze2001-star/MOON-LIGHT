@@ -6,13 +6,14 @@
     <title>MOONLIGHT | Wedding Invitation</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 0; background-color: #f9f7f2; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px 0; }
+        body { margin: 0; padding: 0; background-color: #f9f7f2; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 40px 0; }
         .invitation-card { background: white; width: 90%; max-width: 500px; padding: 60px 40px; text-align: center; border: 1px solid #e0d5c1; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; }
         .invitation-card::before { content: ''; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; border: 1px solid #d4af37; pointer-events: none; }
         .logo-text { font-size: 0.8em; letter-spacing: 4px; color: #bc9311; margin-bottom: 30px; text-transform: uppercase; }
         h1 { font-family: 'Playfair Display', serif; font-size: 3.2em; color: #222; margin: 15px 0; font-weight: 400; }
         .and { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5em; color: #d4af37; margin: 5px 0; }
         
+        /* ტაიმერის სტილი */
         #timer { display: flex; justify-content: center; gap: 15px; margin: 30px 0; font-family: 'Montserrat', sans-serif; }
         .timer-item { background: #fdfbf7; border: 1px solid #eee; padding: 10px; min-width: 60px; border-radius: 5px; }
         .timer-num { display: block; font-size: 1.5em; color: #d4af37; font-weight: bold; }
@@ -22,8 +23,10 @@
         .date { font-size: 1.1em; letter-spacing: 2px; color: #444; text-transform: uppercase; }
         .location { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1em; color: #777; margin: 10px 0; }
 
-        #rsvp-form-container { margin-top: 30px; border-top: 1px solid #eee; padding-top: 30px; }
-        #submit-to-google-sheet { display: flex; flex-direction: column; gap: 15px; }
+        /* RSVP ფორმის სტილი */
+        #rsvp-section { margin-top: 30px; border-top: 1px solid #eee; padding-top: 30px; }
+        #submit-to-google-sheet { display: flex; flex-direction: column; gap: 15px; text-align: left; }
+        #submit-to-google-sheet label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: -10px; margin-left: 5px; }
         
         input, select {
             padding: 12px;
@@ -32,6 +35,8 @@
             font-size: 0.9em;
             outline: none;
             background: #fdfbf7;
+            width: 100%;
+            box-sizing: border-box;
         }
         input:focus, select:focus { border-color: #d4af37; }
         
@@ -45,6 +50,7 @@
             font-size: 0.8em; 
             transition: 0.3s; 
             text-transform: uppercase; 
+            margin-top: 10px;
         }
         .submit-button:hover { background-color: #d4af37; }
         .submit-button:disabled { background-color: #ccc; cursor: not-allowed; }
@@ -74,10 +80,11 @@
             <div class="location">Mtatsminda Panorama, Tbilisi</div>
         </div>
 
-        <div id="rsvp-form-container">
+        <div id="rsvp-section">
             <form id="submit-to-google-sheet">
-                <p style="font-size: 0.8em; letter-spacing: 1px; color: #bc9311; margin-bottom: 10px;">დაადასტურეთ დასწრება</p>
-                <input type="text" name="Name" placeholder="თქვენი სახელი და გვარი" required>
+                <p style="text-align: center; font-size: 0.8em; letter-spacing: 1px; color: #bc9311; margin-bottom: 15px; text-transform: uppercase;">დაადასტურეთ დასწრება</p>
+                
+                <input type="text" name="Name" placeholder="სახელი და გვარი" required>
                 
                 <select name="Status" required>
                     <option value="" disabled selected>მოხვალთ ქორწილში?</option>
@@ -95,11 +102,12 @@
     </div>
 
     <script>
-        // ტაიმერის ლოგიკა
+        // ტაიმერის ფუნქციონალი
         const weddingDate = new Date("June 30, 2026 19:00:00").getTime();
         const timer = setInterval(function() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
+
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -113,31 +121,4 @@
             if (distance < 0) {
                 clearInterval(timer);
                 document.getElementById("timer").innerHTML = "დღეს ქორწილია!";
-            }
-        }, 1000);
-
-        // მონაცემთა გაგზავნის ლოგიკა
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyBgQb7bJ-BVTX0amyGGl-63JwK3zEQgVav4Voj8JTp-MEW6Qmvg2tNgrGJkdskb9WQ/exec'
-        const form = document.forms['submit-to-google-sheet']
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            const btn = form.querySelector('.submit-button')
-            btn.innerHTML = "იგზავნება..."
-            btn.disabled = true
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    alert('მადლობა! თქვენი პასუხი წარმატებით შენახულია.')
-                    btn.innerHTML = "შენახულია ✓"
-                    form.reset()
-                })
-                .catch(error => {
-                    alert('შეცდომა! გთხოვთ სცადოთ თავიდან.')
-                    btn.disabled = false
-                    btn.innerHTML = "გაგზავნა"
-                })
-        })
-    </script>
-</body>
-</html>
+                

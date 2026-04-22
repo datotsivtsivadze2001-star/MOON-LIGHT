@@ -6,132 +6,34 @@
     <title>MOONLIGHT | Wedding Invitation</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f9f7f2;
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .invitation-card {
-            background: white;
-            width: 90%;
-            max-width: 500px;
-            padding: 60px 40px;
-            text-align: center;
-            border: 1px solid #e0d5c1;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        /* ოქროსფერი ჩარჩო */
-        .invitation-card::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
-            border: 1px solid #d4af37;
-            pointer-events: none;
-        }
-
-        .logo-text {
-            font-size: 0.8em;
-            letter-spacing: 4px;
-            color: #bc9311;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5em;
-            color: #222;
-            margin: 20px 0;
-            font-weight: 400;
-        }
-
-        .and {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.5em;
-            color: #d4af37;
-            margin: 10px 0;
-        }
-
-        .details {
-            margin-top: 40px;
-            border-top: 1px solid #eee;
-            padding-top: 30px;
-        }
-
-        .date {
-            font-size: 1.2em;
-            letter-spacing: 2px;
-            color: #444;
-            text-transform: uppercase;
-        }
-
-        .location {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.1em;
-            color: #777;
-            margin: 15px 0 40px 0;
-        }
-
-        .rsvp-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background-color: #222;
-            color: white;
-            text-decoration: none;
-            letter-spacing: 2px;
-            font-size: 0.9em;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-
-        .rsvp-button:hover {
-            background-color: #d4af37;
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 0.7em;
-            color: #bbb;
-            letter-spacing: 1px;
-        }
+        body { margin: 0; padding: 0; background-color: #f9f7f2; font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .invitation-card { background: white; width: 90%; max-width: 500px; padding: 60px 40px; text-align: center; border: 1px solid #e0d5c1; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; }
+        .invitation-card::before { content: ''; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; border: 1px solid #d4af37; pointer-events: none; }
+        .logo-text { font-size: 0.8em; letter-spacing: 4px; color: #bc9311; margin-bottom: 30px; text-transform: uppercase; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5em; color: #222; margin: 20px 0; font-weight: 400; }
+        .and { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5em; color: #d4af37; margin: 10px 0; }
+        .details { margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px; }
+        .date { font-size: 1.2em; letter-spacing: 2px; color: #444; text-transform: uppercase; }
+        .location { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1em; color: #777; margin: 15px 0 40px 0; }
+        .rsvp-button { display: inline-block; padding: 15px 40px; background-color: #222; color: white; text-decoration: none; letter-spacing: 2px; font-size: 0.9em; transition: 0.3s; text-transform: uppercase; }
+        .rsvp-button:hover { background-color: #d4af37; }
+        footer { margin-top: 40px; font-size: 0.7em; color: #bbb; letter-spacing: 1px; }
     </style>
 </head>
 <body>
-
     <div class="invitation-card">
         <div class="logo-text">Moonlight Events</div>
-        
         <p style="letter-spacing: 2px; color: #888;">TOGETHER WITH THEIR FAMILIES</p>
-        
         <h1>David</h1>
         <div class="and">&</div>
         <h1>Nia</h1>
-        
         <div class="details">
             <p style="margin-bottom: 5px; color: #888;">ARE GETTING MARRIED</p>
             <div class="date">Saturday, 22 August 2026</div>
             <div class="location">Mtatsminda Panorama, Tbilisi</div>
         </div>
-
         <a href="#" class="rsvp-button">Confirm Attendance</a>
-        
-        <footer>
-            DESIGNED BY MOONLIGHT MANAGEMENT
-        </footer>
+        <footer>DESIGNED BY MOONLIGHT MANAGEMENT</footer>
     </div>
-
 </body>
 </html>

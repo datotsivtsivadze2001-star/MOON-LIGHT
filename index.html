@@ -7,11 +7,11 @@
     <script>
         const CONFIG = {
             names: "ნინო & თორნიკე",
-            date: "2026-04-25T14:00:00", // ფორმატი: წელი-თვე-დღეTსაათი:წუთი:წამი
+            date: "2026-04-25T14:00:00", 
             location: "რესტორანი კარაველა",
             musicFile: "wedding-song.mp3",
-            // აქ ჩასვი შენი Google Script-ის ახალი ლინკი
-            googleScriptURL: "შენი_ახალი_ლინკი_აქ" 
+            // შენი ახალი Google Script ლინკი უკვე აქ არის:
+            googleScriptURL: "https://script.google.com/macros/s/AKfycbyzjGcHGtCH1nXfynkfkhMdF7bkvifcZk7CKK6VL9rFRgMy4JhkhYdWHrM-W2JySDga/exec" 
         };
     </script>
 
@@ -71,7 +71,7 @@
                 <input type="number" name="Guests" placeholder="სტუმრების რაოდენობა" min="1" max="10">
                 <button type="submit" id="submitBtn">გაგზავნა</button>
             </form>
-            <p id="msg" style="display:none; color: green; margin-top: 15px;">მადლობა, პასუხი მიღებულია! ✨</p>
+            <p id="msg" style="display:none; color: green; font-weight: bold; margin-top: 15px;">მადლობა, პასუხი მიღებულია! ✨</p>
         </div>
     </div>
 
@@ -81,7 +81,7 @@
         document.getElementById('weddingLocation').innerText = CONFIG.location;
         document.getElementById('musicSource').src = CONFIG.musicFile;
 
-        // ტაიმერის ლოგიკა
+        // ტაიმერის ფუნქცია
         function updateTimer() {
             const target = new Date(CONFIG.date).getTime();
             const now = new Date().getTime();
@@ -96,7 +96,7 @@
         }
         setInterval(updateTimer, 1000);
 
-        // მუსიკის მართვა
+        // მუსიკის ფუნქცია
         const music = document.getElementById('bgMusic');
         function toggleMusic() {
             if (music.paused) {
@@ -108,19 +108,27 @@
             }
         }
 
-        // ფორმის გაგზავნა Google Sheets-ში
+        // ფორმის გაგზავნის ლოგიკა
         const form = document.getElementById('attendanceForm');
         form.addEventListener('submit', e => {
             e.preventDefault();
             document.getElementById('submitBtn').disabled = true;
             document.getElementById('submitBtn').innerText = "იგზავნება...";
 
-            fetch(CONFIG.googleScriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    document.getElementById('attendanceForm').style.display = 'none';
-                    document.getElementById('msg').style.display = 'block';
-                })
-                .catch(error => alert('შეცდომა! სცადეთ თავიდან.'));
+            fetch(CONFIG.googleScriptURL, { 
+                method: 'POST', 
+                mode: 'no-cors', // მნიშვნელოვანია Google Script-ისთვის
+                body: new FormData(form)
+            })
+            .then(() => {
+                document.getElementById('attendanceForm').style.display = 'none';
+                document.getElementById('msg').style.display = 'block';
+            })
+            .catch(() => {
+                alert('მოხდა შეცდომა. სცადეთ თავიდან.');
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').innerText = "გაგზავნა";
+            });
         });
     </script>
 </body>
